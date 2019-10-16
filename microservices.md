@@ -1,3 +1,7 @@
+## Introduction
+
+In this use case we will replicate from a multi-tenant DBCS instance to an ADW target.  Both database versions are 18c.  Since all the instances (Source, Target, GG) are in the same data center and availability zone the network is extremely fast and we will get good performance extracting data from the redo logs and writing to trail files on GG.  Further we don't need a distribution server and receiver server, which is normally used to send the trail files from the source to the target.  We extract to a trail file on GG and directly read that file when applying to the target.  This is a much simpler setup than what was created in the demo image where objects were created to simulate a distributed environment.
+
 ## **DBCS Configuration**
 
 ```
@@ -66,7 +70,7 @@ grant unlimited tablespace to cyc;
 
 ![](images/003.png)
 
-### Upload ADW Wallet and update tnsnames.ora and sqlnet.ora on image
+### **Upload ADW Wallet and update tnsnames.ora and sqlnet.ora on image**
 
 - Log into your marketplace image with ssh and 
 
@@ -86,7 +90,7 @@ When you deployed the marketplace image and you took the defaults you may or may
 
 ![](images/006.png)
 
-### Upload ADW Wallet and update tnsnames.ora and sqlnet.ora on image
+### **Upload ADW Wallet and update tnsnames.ora and sqlnet.ora on image**
 
 - Log into your marketplace image with ssh and cd to `/u02/deployments/Source/etc`.  Create a tnsnames.ora file here and enter your CDB and PDB entries from your DBCS database (which in our case is the source).
 
@@ -140,6 +144,52 @@ extract ext1
 useridalias CDBGGATE domain OracleGoldenGate
 exttrail aa
 sourcecatalog cycpdb
+ddl include mapped 
 table cyc.*;
 ```
 ![](images/018.png)
+
+### **Configure Target**
+
+- Create Credential.  Add a checkpoint table (ggadmin.checkpointtable) - can be a different name but you need to specify the gg user. 
+
+![](images/019.png)
+
+![](images/020.png)
+
+- Do not specify Transaction Information (this is for logging the source), but optionally you can add a heartbeat table to enable lag monitoring.
+
+![](images/021.png)
+
+### **Add Replicat**
+
+![](images/022.png)
+
+- For ADW specify Parallel, nonintegrated
+
+![](images/023.png)
+
+- Select the checkpoint table you created, then 'next'
+
+![](images/024.png)
+
+- Ensure you have the following parameters
+
+```
+replicat rep1
+useridalias TGGATE domain OracleGoldenGate
+ddl include mapped
+MAP cycpdb.cyc.*, TARGET cyc.*;
+```
+
+![](images/025.png)
+
+- Note in the ext1 and rep1 above you can add a line `ddl include mapped` to capture ddl changes (table create statements).
+
+### **Enter transactions in the source to test replication**
+
+- Note shown here, but you can enter data to test replication.
+
+![](images/026.png)
+
+![](images/027.png)
