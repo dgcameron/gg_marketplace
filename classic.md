@@ -50,6 +50,7 @@ grant unlimited tablespace to cyc;
 
 # **Marketplace Image - Classic Configuration**
 
+### **Set up connectivity on the image**
 ```
 -- edit .bashrc and add:
 export TNS_ADMIN=/u02/deployments/oracle18/network/admin
@@ -102,7 +103,7 @@ cp sqlnet.ora /u01/app/client/oracle18/network/admin
 cp tnsnames.ora /u01/app/client/oracle18/network/admin
 ```
 
-## **config credentials**
+### **config credentials**
 
 ```
 cd /usr/local/bin
@@ -119,7 +120,7 @@ dblogin useridalias adw
 -- note you can also connect directly without using the alias, and will need to use this when connecting to the pdb instead of CDB above (dblogin userid ggadmin@db201910111651_low password <password>)
 ```
 
-## **config source**
+### **config source**
 
 ```
 -- use integrated extract
@@ -150,7 +151,7 @@ Oracle Goldengate marked following column as key columns on table CYC.TEST: COLA
 No unique key is defined for table CYC.TEST.
 ```
 
-## **config target**
+### **config target**
 
 Note documentation: Currently, only non-integrated Replicats are supported with Oracle Autonomous Data Warehouse Cloud. Integrated Replicat, parallel Replicat, and coordindated Replicat are not supported.
 
@@ -166,7 +167,7 @@ add checkpointtable ggadmin.checkpointtable
 add replicat REP1, exttrail ./dirdat/aa, checkpointtable ggadmin.checkpointtable
 ```
 
-## **create parameter files and start processes**
+### **create parameter files and start processes**
 
 ```
 -- ext1.prm - create in /home/opc/oracle18/dirprm 

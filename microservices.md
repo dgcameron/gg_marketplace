@@ -52,7 +52,7 @@ grant unlimited tablespace to cyc;
 
 # **Marketplace Image - Microservices Configuration**
 
-## **Create new admin user (not required, but is best practice)**
+### **Create new admin user (not required, but is best practice)**
 
 - Log into Service Manager
 
@@ -66,11 +66,11 @@ grant unlimited tablespace to cyc;
 
 ![](images/003.png)
 
-## Upload ADW Wallet and update tnsnames.ora and sqlnet.ora on image
+### Upload ADW Wallet and update tnsnames.ora and sqlnet.ora on image
 
 - Log into your marketplace image with ssh and 
 
-## **Review Deployments**
+### **Review Deployments**
 
 When you deployed the marketplace image and you took the defaults you may or may not have properly specified the source and/or target database versions.  Source and Target with db12c was the default.  In the case where both source and target databases are the same version (ie 18c in our case), you actually only need one deployment.  That is, both source and target config is on one deployment.  So in this case the word 'Source' is misleading.  However this set up did use two deployments.  If your source and target are different versions then you would need more than one deployment (eg: source 12c and target 19c).  
 
@@ -86,7 +86,7 @@ When you deployed the marketplace image and you took the defaults you may or may
 
 ![](images/006.png)
 
-## Upload ADW Wallet and update tnsnames.ora and sqlnet.ora on image
+### Upload ADW Wallet and update tnsnames.ora and sqlnet.ora on image
 
 - Log into your marketplace image with ssh and cd to `/u02/deployments/Source/etc`.  Create a tnsnames.ora file here and enter your CDB and PDB entries from your DBCS database (which in our case is the source).
 
@@ -100,7 +100,7 @@ When you deployed the marketplace image and you took the defaults you may or may
 
 ![](images/011.png)
 
-## **Configure Source**
+### **Configure Source**
 
 - Select Administration Server
 
