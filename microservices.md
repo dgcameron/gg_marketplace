@@ -1,4 +1,4 @@
-# **DBCS Configuration**
+## **DBCS Configuration**
 
 ```
 - sudo su - oracle
@@ -33,7 +33,7 @@ ALTER SYSTEM SWITCH LOGFILE;
 SELECT supplemental_log_data_min, force_logging FROM v$database;
 ```
 
-# **ADW Configuration**
+## **ADW Configuration**
 
 ```
 alter user ggadmin identified by <password> account unlock;
@@ -50,7 +50,7 @@ grant dwrole to cyc;
 grant unlimited tablespace to cyc;
 ```
 
-# **Marketplace Image - Microservices Configuration**
+## **Marketplace Image - Microservices Configuration**
 
 ### **Create new admin user (not required, but is best practice)**
 
