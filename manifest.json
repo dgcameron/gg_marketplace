@@ -1,0 +1,23 @@
+{
+    "workshop": {
+        "title": "Marketplace GG Config Notes",
+        "description": "Here are some notes on how to configure gg classic and gg ms on the marketplace images that replicate from DBCS 18c to ADW 18c",
+        "interactive":"https://launch.oracle.com/?adwc4dev",
+         "labs": [
+            {
+                "number": "10",
+                "filename": "classic.md",
+                "title": "GG Classic Setup",
+                "description": "GG Classic Setup",
+                "labels": {"version": "Self-Guided"}
+            },
+		  {
+                "number": "20",
+                "filename": "ms.md",
+                "title": "Microservices Setup",
+                "description": "Microservices Setup",
+                "labels": {"version": "Self-Guided"}
+            }
+        ]
+    }
+}
