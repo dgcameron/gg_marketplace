@@ -184,10 +184,11 @@ useridalias adw
 dboptions ENABLE_INSTANTIATION_FILTERING
 ddl include mapped
 map cycpdb.cyc.*, target cyc.*;
-```
 
 start ext1
 start rep1
 info all
 stats ext1
 stats rep1
+
+```
