@@ -135,7 +135,7 @@ Extract EXT1 successfully registered with database at SCN 2809527.
 dblogin userid cyc@cycpdb, password <password> -- connect directly to PDB instead of CDB
 Successfully logged into database CYCPDB.
 
-GGSCI (ogg19cora as cyc@DB1011/CYCPDB) 5> add schematrandata cycpdb.cyc allcols
+GGSCI (ogg19cora as cyc@DB1011/CYCPDB) 5> add schematrandata cycpdb.cyc preparecsn allcols
 
 2019-10-14 21:28:37  INFO    OGG-01788  SCHEMATRANDATA has been added on schema "cyc".
 
@@ -150,6 +150,7 @@ Oracle Goldengate support native capture on table CYC.TEST.
 Oracle Goldengate marked following column as key columns on table CYC.TEST: COLA
 No unique key is defined for table CYC.TEST.
 ```
+Note this blog on logging:  https://www.oracle-scn.com/oracle-goldengate-integration-with-datapump-dboptions-enable_instantiation_filtering/
 
 ### **config target**
 
@@ -193,3 +194,15 @@ stats ext1
 stats rep1
 
 ```
+
+**Post configuration steps:**
+
+1. Start ext1
+
+2  Export data from source using expdp (or use RMAN).  Ensure rep1 is not running.  GG should internally note the SCN, but you can also issue:
+select current_scn from V$database;
+
+3. Import data into target.
+
+4.  Start rep1.  GG should pick up changes from the point of the export.  You can also issue:
+start replicat , aftercsn
