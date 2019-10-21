@@ -127,10 +127,10 @@ dblogin useridalias adw
 
 dblogin useridalias dbcs
 
+register extract ext1 database container cycpdb
+Extract EXT1 successfully registered with database at SCN 2809527
 add extract ext1, integrated tranlog, begin now
 add exttrail ./dirdat/aa, extract ext1, megabytes 50
-register extract ext1 database container cycpdb
-Extract EXT1 successfully registered with database at SCN 2809527.
 
 dblogin userid cyc@cycpdb, password <password> -- connect directly to PDB instead of CDB
 Successfully logged into database CYCPDB.
