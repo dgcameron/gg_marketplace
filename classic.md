@@ -127,7 +127,7 @@ dblogin useridalias adw
 
 dblogin useridalias dbcs
 
-register extract ext1 database container cycpdb
+register extract ext1 database container (cycpdb)
 Extract EXT1 successfully registered with database at SCN 2809527 -- creates a log mining server to capture changes from this point forward
 add extract ext1, integrated tranlog, begin now
 add exttrail ./dirdat/aa, extract ext1, megabytes 50
