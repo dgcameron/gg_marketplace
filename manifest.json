@@ -1,21 +1,21 @@
 {
-    "workshop": {
-        "title": "GoldenGate Marketplace Image Setup",
-        "description": "How to guide for configuring GG Classic and GG Microservices",
-        "theme": "default",
-        "labs": [
-            {
-                "number": "10",
-                "filename": "classic.md",
-                "title": "Classic Configuration",
-                "description": "Classic Configuration"
-            },
-            {
-                "number": "20",
-                "filename": "microservices.md",
-                "title": "Microservices Configuration",
-                "description": "Microservices Configuration"
-            }
-        ]
-    }
+    "workshoptitle": "GoldenGate Marketplace Image Setup",
+    "help": "How to guide for configuring GG Classic and GG Microservices",
+    "include": {
+        "import": "../../common/import_notebook.md"
+    },
+    "tutorials": [
+        {
+            "title": "Read Me First",
+            "filename": "README.md"
+        },
+        {
+	    "title": "Classic Configuration",
+	    "filename": "classic.md"
+        },
+	{
+	   "title": "Microservices Configuration",
+            "filename": "microservices.md"
+        }
+    ]
 }
